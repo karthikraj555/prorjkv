@@ -1,0 +1,29 @@
+Procedure:
+set serveroutput on
+
+Create procedure proname(pconsumerno number)
+sample_exception EXCEPTION
+as
+total_electricity number(12,2);
+begin
+select sum(billamount) into total_electricity from electricity_consumer where customerno=pcustomerno;
+dbms_output.put_line('customer' || pcustomerno || 'bill is' || total_electricity);
+if(customerno=pcustomerno)
+{
+dbms_output.put_line("user found");
+}
+else
+RAISE sample_exception
+EXCEPTION
+when sample_exception then
+dbms_output.put_line("consumer does not exist");
+end;
+/
+
+using sequence
+
+exec pconsumerno(101)
+
+begin
+	exec pconsumer(101)
+end;
